@@ -326,6 +326,10 @@ struct ContentView1: View {
                         Button(action: {
                             withAnimation(.easeInOut(duration: 0.3)) {
                                 model.newChat()
+                                // Show keyboard after starting new chat
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    isInputFocused = true
+                                }
                             }
                         }) {
                             Label("", systemImage: "square.and.pencil")
@@ -353,13 +357,6 @@ struct ContentView1: View {
                         }
                     
                     // Your separate SideView file
-//                    SideView(
-//                        currentView: $currentView,
-//                        enable: $isSidebarVisible,
-//                        Close: {
-//                            isSidebarVisible = false
-//                        }
-//                    )
                     SideView(
                         currentView: $currentView,
                         enable: $isSidebarVisible,
@@ -379,8 +376,6 @@ struct ContentView1: View {
                             }
                         }
                     )
-//                    .frame(maxWidth: 320)
-//                    .offset(x: isSidebarVisible ? 0 : -320)
                     .offset(x: isSidebarVisible ? 0 : -UIScreen.main.bounds.width)
                 }
                 .transition(.move(edge: .leading))
