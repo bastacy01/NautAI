@@ -23,7 +23,8 @@ struct SideView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.ignoresSafeArea()
+                Color.black
+                    .ignoresSafeArea()
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
                         HStack {
@@ -74,25 +75,14 @@ struct SideView: View {
                                 .buttonStyle(PlainButtonStyle())
                                 .listRowBackground(Color.clear)
                                 .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 4, leading: 20, bottom: 15, trailing: 0))
                                 .contextMenu {
                                     Button(role: .destructive) {
                                         withAnimation {
                                             onDeleteConversation(conversation)
                                         }
                                     } label: {
-                                        HStack(spacing: 8) {
-                                            Image(systemName: "trash")
-                                                .font(.system(size: 14))
-                                            Text("Delete")
-                                                .font(.subheadline)
-                                        }
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 8)
-                                        .frame(width: 20)
-                                        .background(
-                                            Color.clear
-                                                .glassEffect(.regular, in: .rect(cornerRadius: 20, style: .continuous))
-                                        )
+                                        Label("Delete", systemImage: "trash")
                                     }
                                 } preview: {
                                     ConversationPreview(conversation: conversation, chatDataManager: chatDataManager)
@@ -106,13 +96,12 @@ struct SideView: View {
                         .listStyle(.plain)
                         .scrollContentBackground(.hidden)
                         .foregroundStyle(.white)
-                        .padding(.leading, -13) // Remove List's default padding
-                        .padding(.top, -10)
+                        .padding(.leading, -20) // Remove List's default padding
                     }
                     
                     Spacer()
                 }
-                .padding(.top, 3)
+//                .padding(.top, 32)
                 .padding(.horizontal)
             }
         }
@@ -199,7 +188,11 @@ struct ConversationPreview: View {
             }
             .padding(.vertical)
         }
-        .frame(width: 400, height: 580)
+        .frame(width: 400, height: 550)
+        .overlay(
+            RoundedRectangle(cornerRadius: 32.5)
+                .stroke(Color.white, lineWidth: 1)
+        )
 //        .cornerRadius(20)
     }
 }
