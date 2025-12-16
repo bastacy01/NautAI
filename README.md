@@ -1,3 +1,3 @@
 # NautAI
 
-![Screenshot 2025-02-24 at 11 25 18 AM](https://github.com/user-attachments/assets/ca99256c-3731-46d8-b9ba-2a16e3a8d914)
+![IMG_8323](https://github.com/user-attachments/assets/f4c3d062-2b10-4338-bd76-cf0d22b7735d)
